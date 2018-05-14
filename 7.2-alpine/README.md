@@ -1,11 +1,10 @@
 # PHP 7.2 alpine
 
-Example Usage:
+Use this image for running php applications with php-fpm and nginx.
 
+### Example Usage:
 ```Dockerfile
-FROM 834444538194.dkr.ecr.eu-central-1.amazonaws.com/jacob/base/php:7.2-fpm-alpine-latest
-
-MAINTAINER YOUR NAME
+FROM bjoernHeneka/php-fpm-nginx:7.2-alpine
 
 COPY ./docker/nginx/conf.d/vhost.conf /etc/nginx/conf.d/default.conf
 COPY ./application /var/www/html
@@ -16,8 +15,7 @@ RUN chown 1000.1000 /var/www/html -R \
 
 ```
 
-Example vhost.conf
-
+### Example vhost.conf
 ```
 server {
     root /var/www/html/public;
