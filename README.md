@@ -4,7 +4,7 @@ Use this image for running php applications with php-fpm and nginx.
 
 ### Example Usage:
 ```Dockerfile
-FROM bjoernHeneka/php-fpm-nginx:7.2-alpine
+FROM bjoernheneka/php-fpm-nginx:7.2-alpine
 
 COPY ./docker/nginx/conf.d/vhost.conf /etc/nginx/conf.d/default.conf
 COPY ./application /var/www/html
