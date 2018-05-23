@@ -1,8 +1,10 @@
 FROM php:7.2-fpm-alpine
 
-MAINTAINER Bjoern Heneka <bheneka@codebee.de>
+MAINTAINER Jens Reinemuth <jens@reinemuth.info>
 
 EXPOSE 80 443
+
+ENV PHP_AMQP_VERSION=1.9.0
 
 RUN apk add --update --no-cache \
     vim \
@@ -11,12 +13,20 @@ RUN apk add --update --no-cache \
     nginx \
     icu-dev \
     shadow \
+    automake \
+    make \
+    gcc \
+    g++ \ 
+    libtool \
+    autoconf \
     supervisor \
-    && docker-php-ext-install pdo \
-    && docker-php-ext-install pdo_mysql \
+    rabbitmq-c \
+    rabbitmq-c-dev \
     && docker-php-ext-install intl \
     && docker-php-ext-install bcmath \
-    && docker-php-ext-install exif
+    && docker-php-ext-install exif \
+    && pecl install amqp \
+    && docker-php-ext-enable amqp
 
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 COPY ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
