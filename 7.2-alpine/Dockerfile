@@ -31,6 +31,9 @@ COPY ./docker/php/usr/local/etc/php-fpm.d/www.conf /usr/local/etc/php-fpm.d/www.
 
 RUN chown 1000.1000 /var/www/html -R \
     && usermod -u 1000 www-data \
-    && groupmod -g 1000 www-data
+    && groupmod -g 1000 www-data \
+    && mkdir -p /var/log/php-fpm \
+    && touch /var/log/php-fpm/slowlog-site.log \
+    && rm /etc/nginx/conf.d/default.conf
 
 ENTRYPOINT ["/usr/bin/supervisord", "-n"]
