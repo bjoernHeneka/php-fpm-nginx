@@ -24,8 +24,8 @@ server {
         try_files $uri @rewriteapp;
     }
 
-    location / {
-        try_files $uri /index.php$is_args$args;
+    location @rewriteapp {
+        rewrite ^(.*)$ /index.php/$1 last;
     }
 
     location ~ ^/(index|index_dev)\.php(/|$) {
@@ -35,7 +35,6 @@ server {
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_param HTTPS off;
     }
-
 
 }
 ``` 
