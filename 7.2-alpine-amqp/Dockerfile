@@ -9,6 +9,7 @@ RUN apk add --update --no-cache \
     libtool \
     rabbitmq-c \
     rabbitmq-c-dev \
+    php7-cli \
     && pecl install amqp \
     && docker-php-ext-enable amqp
 
