@@ -13,7 +13,7 @@ RUN apk add --update --no-cache \
     shadow \
     supervisor \
     autoconf \
-    gcc g++ make libffi-dev openssl-dev \
+    gcc g++ make libffi-dev \
     && pecl install APCu-5.1.11 \
     && docker-php-ext-enable opcache \
     && docker-php-ext-enable apcu \
